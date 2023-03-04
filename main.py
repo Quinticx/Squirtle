@@ -1,5 +1,5 @@
 import serial
-import time
+from playsound import playsound
 
 # Open serial function
 def openSerial():
@@ -43,6 +43,9 @@ def readSerial(SerialObj):
 def closeSerial(SerialObj):
     SerialObj.close()
 
+# Sound the Atticus alarm if turtle is nearby
+def playAtticusAlarm():
+    playsound('mrfinch.mp3')
 
 # Open the serial port
 esp = openSerial()
@@ -59,6 +62,7 @@ while (inserial == 0):
         print("Turtle detected!")
         print("Alerting nearby ships!")
         writeSerial(esp)
+        playAtticusAlarm()
         inserial = readSerial(esp)
 
 
