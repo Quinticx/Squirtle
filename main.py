@@ -53,6 +53,7 @@ inserial = 0
 while (inserial == 0):
     inserial = readSerial(esp)
 
+    # If inserial receives a "too close" signal, sound the alarm and alert the ship
     if (inserial == 1):
         print("Turtle detected!")
         print("Alerting nearby ships!")
