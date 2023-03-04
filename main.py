@@ -6,7 +6,7 @@ def openSerial():
     # Open the serial connection if it can be opened
     print("Opening serial port")
     try:
-        SerialObj = serial.Serial('COM7')
+        SerialObj = serial.Serial('COM8')
 
     except serial.SerialException as err:
         print('An Exception Occured')
@@ -24,10 +24,10 @@ def openSerial():
 
 # Write serial function
 def writeSerial(SerialObj):
-    time.sleep(3)
+    # Ship is too close to turtle, warn ship by transmitting the high signal
     print("Sending data to ship")
-    # Write the test to chip
-    SerialObj.write(b'32')
+    # Write 1 to chip
+    SerialObj.write(b'0')
 
 # Read serial function
 def readSerial(SerialObj):
@@ -35,7 +35,7 @@ def readSerial(SerialObj):
         ser_bytes = SerialObj.readline()
         print("Receiving data from turtle")
         decoded_bytes = float(ser_bytes[0:len(ser_bytes) - 2].decode("utf-8"))
-        print(decoded_bytes)
+        return decoded_bytes
     except KeyboardInterrupt:
         print('Keyboard interrupted')
 
@@ -44,8 +44,21 @@ def closeSerial(SerialObj):
     SerialObj.close()
 
 
+# Open the serial port
 esp = openSerial()
+#writeSerial(esp)
+print("Reading serial port")
+inserial = readSerial(esp)
+print(inserial)
 
-while(True):
-    writeSerial(esp)
-    readSerial(esp)
+# Keep reading serial if serial reads back "okay" (0)
+while (inserial == 0):
+    inserial = readSerial(esp)
+
+    if (inserial == 1):
+        print("Turtle detected!")
+        print("Alerting nearby ships!")
+        writeSerial(esp)
+        inserial = readSerial(esp)
+
+
