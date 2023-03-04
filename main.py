@@ -8,20 +8,16 @@ def openSerial():
     print("Opening serial port")
     try:
         SerialObj = serial.Serial('COM8')
+        # Provide serial parameters
+        SerialObj.baudrate = 115200  # set Baud rate to 115200
+        SerialObj.bytesize = 8  # Number of data bits = 8
+        SerialObj.parity = 'N'  # No parity
+        SerialObj.stopbits = 1  # Number of Stop bits = 1
+        return SerialObj
 
     except serial.SerialException as err:
         print('An Exception Occured')
         print('Exception Details-> ', err)
-
-    else:
-        print("Serial port opened!")
-
-        # Provide serial parameters
-        SerialObj.baudrate = 115200  # set Baud rate to 115200
-        SerialObj.bytesize = 8     # Number of data bits = 8
-        SerialObj.parity   ='N'    # No parity
-        SerialObj.stopbits = 1     # Number of Stop bits = 1
-    return SerialObj
 
 # Write serial function
 def writeSerial(SerialObj):
