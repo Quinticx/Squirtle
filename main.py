@@ -1,26 +1,51 @@
 import serial
 import time
 
-# Open the serial connection if it can be opened
-try:
-    SerialObj = serial.Serial('COM11')
+# Open serial function
+def openSerial():
+    # Open the serial connection if it can be opened
+    print("Opening serial port")
+    try:
+        SerialObj = serial.Serial('COM7')
 
-except serial.SerialException as err:
-    print('An Exception Occured')
-    print('Exception Details-> ', err)
+    except serial.SerialException as err:
+        print('An Exception Occured')
+        print('Exception Details-> ', err)
 
-else:
-    print('Serial Port Opened')
+    else:
+        print("Serial port opened!")
 
-    # Provide serial parameters
-    SerialObj.baudrate = 115200  # set Baud rate to 9600
-    SerialObj.bytesize = 8     # Number of data bits = 8
-    SerialObj.parity   ='N'    # No parity
-    SerialObj.stopbits = 1     # Number of Stop bits = 1
+        # Provide serial parameters
+        SerialObj.baudrate = 115200  # set Baud rate to 115200
+        SerialObj.bytesize = 8     # Number of data bits = 8
+        SerialObj.parity   ='N'    # No parity
+        SerialObj.stopbits = 1     # Number of Stop bits = 1
+    return SerialObj
 
+# Write serial function
+def writeSerial(SerialObj):
     time.sleep(3)
-
+    print("Sending data to ship")
     # Write the test to chip
-    SerialObj.write(b'A')
+    SerialObj.write(b'32')
 
+# Read serial function
+def readSerial(SerialObj):
+    try:
+        ser_bytes = SerialObj.readline()
+        print("Receiving data from turtle")
+        decoded_bytes = float(ser_bytes[0:len(ser_bytes) - 2].decode("utf-8"))
+        print(decoded_bytes)
+    except KeyboardInterrupt:
+        print('Keyboard interrupted')
+
+
+def closeSerial(SerialObj):
     SerialObj.close()
+
+
+esp = openSerial()
+
+while(True):
+    writeSerial(esp)
+    readSerial(esp)
