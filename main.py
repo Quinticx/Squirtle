@@ -1,5 +1,6 @@
 import serial
 from playsound import playsound
+import os
 
 # Open serial function
 def openSerial():
@@ -45,14 +46,12 @@ def closeSerial(SerialObj):
 
 # Sound the Atticus alarm if turtle is nearby
 def playAtticusAlarm():
-    playsound('mrfinch.mp3')
+    playsound(os.path.dirname(__file__) + '/mrfinch.mp3')
 
 # Open the serial port
 esp = openSerial()
-#writeSerial(esp)
-print("Reading serial port")
-inserial = readSerial(esp)
-print(inserial)
+# Start inserial at 0 so module continuously looks for incoming distance alert
+inserial = 0
 
 # Keep reading serial if serial reads back "okay" (0)
 while (inserial == 0):
@@ -61,8 +60,8 @@ while (inserial == 0):
     if (inserial == 1):
         print("Turtle detected!")
         print("Alerting nearby ships!")
-        writeSerial(esp)
         playAtticusAlarm()
+        writeSerial(esp)
         inserial = readSerial(esp)
 
 
