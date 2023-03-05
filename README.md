@@ -5,17 +5,13 @@
 Squirtle is a proof of concept for a real time turtle tracker that aims to save turtles lives by warning nearby fishing ships. The turtles GPS coordinates, along with GPS from fishing vessels, are sent in to a NOAA command center. The command center then determines if the turtle and the ship are too close and sends an audio and visual alarm to the ship. This would give the ship time to pull in their nets and allow for the turtle to pass safely by.
 
 ## Component(s)
-3x ESP32 (1 onboard ship, 1 onboard turtle, 1 in command center)
+In a real-world application: 3x ESP32 (1 onboard ship, 1 onboard turtle, 1 in command center).
+In the demo setting: 2x ESP32 (1 onboard ship, 1 onboard turtle)
 
-## Demo and Uses
+## Use
 ![whereturt](https://media.tenor.com/R-vPpSv1jlQAAAAC/where-are-the-turtles.gif)
 
-Below is a demonstration of how the modules interface with each other. The ESP32 on the turtle is transmitting it's location to the command center module (attached to the computer). The ESP32 on the boat is both transmitting it's location to the command center and waiting to receive a "alert" from the command center in case of nearby turtles. When the turtle is in close proximity to the ship, the command center issues an audio and visual alert to the ship via an alarm that sounds and a turtle that pops up on the ships dashboard (represented by the LCD screen on the ESP32). 
-
-**Insert demo of turtle getting close to ship**
-
-
-Insert demo of GUI
+The ESP32 on the turtle is transmitting it's location to the command center module. The ESP32 on the boat is both transmitting it's location to the command center and waiting to receive a "alert" from the command center in case of nearby turtles. When the turtle is in close proximity to the ship, the command center issues an audio and visual alert to the ship via an alarm that sounds and a turtle that pops up on the ships dashboard. 
 
 ## Issues and Challenges
 ![nemo](https://github.com/Quinticx/Squirtle/blob/master/finding-nemo-wrong.gif)
@@ -23,6 +19,7 @@ Insert demo of GUI
 We had several issues throughout project development. 
 1. The main sea turtle tracker (https://conserveturtles.org/stctrackingmap/?id=277) requires written permission from NOAA to utilize their live location data. This made our original idea, real time plotting of sea turtles over top of current ocean surface temperatures, impossible.
 2. Interfacing between multiple microcontrollers via LoRa in a metal building. To solve this, we switched our modules to utilize bluetooth instead of LoRa to aid in communication. This, however, came with it's own challenges.
+3. The addition of the 3rd ESP32 was challenging to communicate to. In order for a functional demo, the command center module was replaced with a computer terminal.
 
 
 ## Sea Turtle Fun Facts!
