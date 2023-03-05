@@ -41,6 +41,7 @@ def readSerial(SerialObj):
         print('Keyboard interrupted')
 
 
+# Close serial function
 def closeSerial(SerialObj):
     SerialObj.close()
 
@@ -69,35 +70,35 @@ turtle_lon = []
 ship_lat = [-80.2843]
 ship_lon = [24.0001]
 
-# Open the serial port
+# Open the serial port for ESP32
 esp = openSerial()
 
-# Keep reading serial
+# Keep reading serial forever
 while True:
     inserial = readSerial(esp)
-    print(f"inserial: {inserial}")
 
     # If inserial receives a "close by" signal, alert the ship
     if (inserial > closest) and (inserial < toofar):
         print("Turtle nearby!")
-        print("Alerting nearby ships!")
+        print("Please watch satellite feed for further details...")
         turtleAlarm(esp, audio=False)
+        # For demo, if in "turtle nearby" range, plot these coordinates
         turtle_lat.append(-80.1337)
         turtle_lon.append(24.0744)
     # If inserial receives an "on top of" signal, sound the alarm and alert the ship
     elif inserial < closest:
         print("Turtle in range!")
-        print(f"Turtle is {inserial} away from ship...")
+        print(f"Turtle is {inserial} meters away from ship...")
         print("Alerting nearby ships!")
         turtleAlarm(esp, audio=True)
+        # For demo, if in "turtle dead" range, plot these coordinates
         turtle_lat.append(-80.2843)
         turtle_lon.append(24.0003)
     # If inserial receives a "no turtles nearby" signal, do nothing
     else:
         print("No turtles in range, fish away.")
+        # For demo, if in "good to go" range, plot these coordinates
         turtle_lat.append(-79.5819)
         turtle_lon.append(24.2615)
     plt.close()
     plotLatLon(turtle_lat, turtle_lon, ship_lat, ship_lon)
-
-
