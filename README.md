@@ -9,6 +9,7 @@ Squirtle is a proof of concept for a real time turtle tracker that aims to save 
 
 ## Demo and Uses
 ![whereturt](https://media.tenor.com/R-vPpSv1jlQAAAAC/where-are-the-turtles.gif)
+
 Below is a demonstration of how the modules interface with each other. The ESP32 on the turtle is transmitting it's location to the command center module (attached to the computer). The ESP32 on the boat is both transmitting it's location to the command center and waiting to receive a "alert" from the command center in case of nearby turtles. When the turtle is in close proximity to the ship, the command center issues an audio and visual alert to the ship via an alarm that sounds and a turtle that pops up on the ships dashboard (represented by the LCD screen on the ESP32). 
 
 **Insert demo of turtle getting close to ship**
