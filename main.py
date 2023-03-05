@@ -60,9 +60,9 @@ def turtleAlarm(device, audio=False):
 
 
 # Constants
-closest = 2
-medium = 4
-toofar = 6
+closest = 2.6
+medium = 3
+toofar = 4.5
 
 # Lat/Lons for Turtle
 turtle_lat = []
@@ -80,7 +80,7 @@ while True:
     # If inserial receives a "close by" signal, alert the ship
     if (inserial > closest) and (inserial < toofar):
         print("Turtle nearby!")
-        print("Please watch satellite feed for further details...")
+        print("Please watch satellite feed for further details...\n\n")
         turtleAlarm(esp, audio=False)
         # For demo, if in "turtle nearby" range, plot these coordinates
         turtle_lat.append(-80.1337)
@@ -89,14 +89,14 @@ while True:
     elif inserial < closest:
         print("Turtle in range!")
         print(f"Turtle is {inserial} meters away from ship...")
-        print("Alerting nearby ships!")
+        print("Alerting nearby ships!\n\n")
         turtleAlarm(esp, audio=True)
         # For demo, if in "turtle dead" range, plot these coordinates
         turtle_lat.append(-80.2843)
         turtle_lon.append(24.0003)
     # If inserial receives a "no turtles nearby" signal, do nothing
     else:
-        print("No turtles in range, fish away.")
+        print("No turtles in range, fish away.\n\n")
         # For demo, if in "good to go" range, plot these coordinates
         turtle_lat.append(-79.5819)
         turtle_lon.append(24.2615)

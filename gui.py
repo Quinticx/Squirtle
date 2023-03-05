@@ -15,7 +15,7 @@ def plotLatLon(turtle_lat, turtle_lon, ship_lat, ship_lon):
 
     # And on the 3rd day of the hackathon, Bri created the world
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-    ax = world.plot(figsize=(10, 6))
+    ax = world.plot(figsize=(6, 6))
 
     # Plot Turtle and Ship coordinates on the world
     gdf_turtle.plot(ax=ax,  marker='o', color='red', markersize=15, label='turtle')
