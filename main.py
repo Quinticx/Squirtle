@@ -73,12 +73,13 @@ while (inserial > toofar):
         print("Alerting nearby ships!")
         turtleAlarm(esp, inserial, audio=False)
         inserial = readSerial(esp)
-    # If inserial receives a "on top of" signal, sound the alarm and alert the ship
+    # If inserial receives an "on top of" signal, sound the alarm and alert the ship
     elif (inserial < closest):
         print("Turtle in range!")
         print("Alerting nearby ships!")
         turtleAlarm(esp, inserial, audio=True)
         inserial = readSerial(esp)
+    # If inserial receives a "no turtles nearby" signal, do nothing
     else:
         print("No turtles in range, fish away.")
 
