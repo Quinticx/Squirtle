@@ -7,10 +7,19 @@ Squirtle is a proof of concept for a real time turtle tracker that aims to save 
 ## Component(s)
 3x ESP32 (1 onboard ship, 1 onboard turtle, 1 in command center)
 
-## Demo
-Insert demo of turtle getting close to ship
+## Demo and Uses
+Below is a demonstration of how the modules interface with each other. The ESP32 on the turtle is transmitting it's location to the command center module (attached to the computer). The ESP32 on the boat is both transmitting it's location to the command center and waiting to receive a "alert" from the command center in case of nearby turtles. When the turtle is in close proximity to the ship, the command center issues an audio and visual alert to the ship via an alarm that sounds and a turtle that pops up on the ships dashboard (represented by the LCD screen on the ESP32). 
+
+**Insert demo of turtle getting close to ship**
+
 
 Insert demo of GUI
+
+## Issues and Challenges
+![nemo](https://github.com/Quinticx/Squirtle/blob/master/finding-nemo-wrong.gif)
+We had several issues throughout project development. 
+1. The main sea turtle tracker () requires written permission from NOAA to utilize their live location data. This made our original idea, real time plotting of sea turtles over top of current ocean surface temperatures, impossible.
+2. Interfacing between multiple microcontrollers via LoRa in a metal building. To solve this, we switched our modules to utilize bluetooth instead of LoRa to aid in communication. This, however, came with it's own challenges.
 
 
 ## Sea Turtle Fun Facts!
