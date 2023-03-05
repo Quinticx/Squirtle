@@ -20,11 +20,11 @@ def openSerial():
         print('Exception Details-> ', err)
 
 # Write serial function
-def writeSerial(SerialObj):
+def writeSerial(SerialObj, distance):
     # Ship is too close to turtle, warn ship by transmitting the high signal
     print("Sending data to ship")
-    # Write 1 to chip
-    SerialObj.write(b'1')
+    # Write distance to chip
+    SerialObj.write(distance)
 
 # Read serial function
 def readSerial(SerialObj):
@@ -45,12 +45,12 @@ def playAtticusAlarm():
     playsound(os.path.dirname(__file__) + '/mrfinch.mp3')
 
 # Turtle alarm function
-def turtleAlarm(esp, audio=False):
+def turtleAlarm(esp, distance, audio=False):
     print("Turtle detected!")
     print("Alerting nearby ships!")
     if (audio == True):
         playAtticusAlarm()
-    writeSerial(esp)
+    writeSerial(esp, distance)
 
 
 # Constants
@@ -67,16 +67,17 @@ inserial = toofar+1
 while (inserial > toofar):
     inserial = readSerial(esp)
 
-    # If inserial receives a "too close" signal, sound the alarm and alert the ship
+    # If inserial receives a "close by" signal, alert the ship
     if (inserial > closest) and (inserial < toofar):
         print("Turtle nearby!")
         print("Alerting nearby ships!")
-        turtleAlarm(esp, audio=False)
+        turtleAlarm(esp, inserial, audio=False)
         inserial = readSerial(esp)
+    # If inserial receives a "on top of" signal, sound the alarm and alert the ship
     elif (inserial < closest):
         print("Turtle in range!")
         print("Alerting nearby ships!")
-        turtleAlarm(esp, audio=True)
+        turtleAlarm(esp, inserial, audio=True)
         inserial = readSerial(esp)
     else:
         print("No turtles in range, fish away.")
