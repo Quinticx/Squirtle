@@ -9,7 +9,7 @@ def openSerial():
     # Open the serial connection if it can be opened
     print("Opening serial port")
     try:
-        SerialObj = serial.Serial('COM7')
+        SerialObj = serial.Serial('COM8')
         # Provide serial parameters
         SerialObj.baudrate = 115200  # set Baud rate to 115200
         SerialObj.bytesize = 8  # Number of data bits = 8
@@ -47,8 +47,9 @@ def closeSerial(SerialObj):
 
 # Sound the Atticus alarm if turtle is nearby
 def playAtticusAlarm():
-    #playsound(os.path.dirname(__file__) + "/mrfinch.mp3")
-    pass
+    # Why so many slashes holy moly it's the slash slinging slasher
+    playsound(r'C:\\\\Users\\\\brian\\\\PycharmProjects\\\\Squirtle\\\\mrfinch.mp3')
+
 
 # Turtle alarm function
 def turtleAlarm(device, audio=False):
@@ -96,6 +97,7 @@ while True:
         print("No turtles in range, fish away.")
         turtle_lat.append(-79.5819)
         turtle_lon.append(24.2615)
+    plt.close()
     plotLatLon(turtle_lat, turtle_lon, ship_lat, ship_lon)
 
 

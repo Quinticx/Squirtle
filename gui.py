@@ -17,8 +17,8 @@ def plotLatLon(turtle_lat, turtle_lon, ship_lat, ship_lon):
     # Plot points on the world
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
     ax = world.plot(figsize=(10, 6))
-    gdf_turtle.plot(ax=ax,  marker='o', color='red', markersize=15, label='turtle');
-    gdf_ship.plot(ax=ax,  marker='o', color='purple', markersize=15, label='ship');
+    gdf_turtle.plot(ax=ax,  marker='o', color='red', markersize=15, label='turtle')
+    gdf_ship.plot(ax=ax,  marker='o', color='purple', markersize=15, label='ship')
 
     # Set extent limits so plot is only on region of interest
     # XLim (West, East)
@@ -27,11 +27,12 @@ def plotLatLon(turtle_lat, turtle_lon, ship_lat, ship_lon):
     ax.set_ylim(22, 28)
 
     # Set title, axis labels, legend
+    plt.ion()
     plt.title("Squirtle Demo")
     plt.xlabel("Lat")
     plt.ylabel("Lon")
     plt.legend(loc="upper right")
-    plt.draw()
+    plt.show()
     plt.pause(1)
     #fig.canvas.set_window_title('Test')
     #plt.show(block=False)
