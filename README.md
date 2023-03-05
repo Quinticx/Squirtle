@@ -17,6 +17,7 @@ Insert demo of GUI
 
 ## Issues and Challenges
 ![nemo](https://github.com/Quinticx/Squirtle/blob/master/finding-nemo-wrong.gif)
+
 We had several issues throughout project development. 
 1. The main sea turtle tracker () requires written permission from NOAA to utilize their live location data. This made our original idea, real time plotting of sea turtles over top of current ocean surface temperatures, impossible.
 2. Interfacing between multiple microcontrollers via LoRa in a metal building. To solve this, we switched our modules to utilize bluetooth instead of LoRa to aid in communication. This, however, came with it's own challenges.
