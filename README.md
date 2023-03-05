@@ -34,4 +34,4 @@ We had several issues throughout project development.
 5. **Sea turtles don’t retract into their shells.**  Unlike other turtles, sea turtles cannot retract their flippers and head into their shells. Their streamlined shells and large paddle-shaped flippers make them very agile and graceful swimmers. In the water, their rear flippers are used as rudders, for steering.
 
 
-[awesome](https://art.pixilart.com/b90baa6c8a7da23.gif)
+![awesome](https://art.pixilart.com/b90baa6c8a7da23.gif)
