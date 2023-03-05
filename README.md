@@ -1,5 +1,5 @@
 # Squirtle - Save the Turtles!
-![squirtle](https://github.com/Quinticx/Squirtle/blob/master/68747470733a2f2f61726368697665732e62756c626167617264656e2e6e65742f6d656469612f75706c6f61642f342f34622f4173685f5371756972746c652e706e67.png)
+![squirtle]([https://github.com/Quinticx/Squirtle/blob/master/68747470733a2f2f61726368697665732e62756c626167617264656e2e6e65742f6d656469612f75706c6f61642f342f34622f4173685f5371756972746c652e706e67.png](https://github.com/Quinticx/Squirtle/blob/master/Screenshot%202023-03-04%20192826.png))
 
 ## Idea
 Squirtle is a proof of concept for a real time turtle tracker that aims to save turtles lives by warning nearby fishing ships. The turtles GPS coordinates, along with GPS from fishing vessels, are sent in to a NOAA command center. The command center then determines if the turtle and the ship are too close and sends an audio and visual alarm to the ship. This would give the ship time to pull in their nets and allow for the turtle to pass safely by.
